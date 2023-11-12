@@ -13,6 +13,12 @@ public class spellManager : MonoBehaviour
     public GameObject fireObject; 
     public GameObject iceObject;
 
+    public GameObject gunObject;
+
+    public GameObject swordObject;
+
+    public GameObject lightObject;
+
     public GameObject spellManagerObject;
 
     [SerializeField] private Wit wit;
@@ -23,8 +29,15 @@ public class spellManager : MonoBehaviour
     {
         fireObject.SetActive(true);
         iceObject.SetActive(true);
+        gunObject.SetActive(true);
+        swordObject.SetActive(true);
+        lightObject.SetActive(true);
        spellObjectDictionary["fire"] = fireObject;
         spellObjectDictionary["ice"] = iceObject;
+        spellObjectDictionary["gun"] = gunObject;
+        spellObjectDictionary["sword"] = swordObject;
+        spellObjectDictionary["light"] = lightObject;
+        
         
     }
 
@@ -70,7 +83,7 @@ public class spellManager : MonoBehaviour
                 // Retrieve the corresponding object and instantiate it, for example
                 GameObject spellObject = spellObjectDictionary[spellName];
                 GameObject spellCopy = Instantiate(spellObject, spellManagerObject.transform.position, spellManagerObject.transform.rotation);
-                Destroy(spellCopy, 2f);
+                Destroy(spellCopy, 3f);
             }
            
         }
