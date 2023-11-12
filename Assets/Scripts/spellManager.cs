@@ -10,10 +10,10 @@ namespace Meta.WitAi
 public class spellManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject fireObject;
+    public GameObject fireObject; 
     public GameObject iceObject;
 
-    public GameObject spellObject;
+    public GameObject spellManagerObject;
 
     [SerializeField] private Wit wit;
 
@@ -21,6 +21,8 @@ public class spellManager : MonoBehaviour
     private Dictionary<string, GameObject> spellObjectDictionary = new Dictionary<string, GameObject>();
     void Start()
     {
+        fireObject.SetActive(true);
+        iceObject.SetActive(true);
        spellObjectDictionary["fire"] = fireObject;
         spellObjectDictionary["ice"] = iceObject;
         
@@ -67,14 +69,10 @@ public class spellManager : MonoBehaviour
             {
                 // Retrieve the corresponding object and instantiate it, for example
                 GameObject spellObject = spellObjectDictionary[spellName];
-                Instantiate(spellObject, spellObject.transform.position, spellObject.transform.rotation);
-                StartCoroutine(DeactivateAfterDelay(spellObject, 3.0f));
+                GameObject spellCopy = Instantiate(spellObject, spellManagerObject.transform.position, spellManagerObject.transform.rotation);
+                Destroy(spellCopy, 2f);
             }
-            else
-            {
-                // Handle the case where the spell name is not found
-                Debug.LogError("Spell not found: " + spellName);
-            }
+           
         }
     }
 
